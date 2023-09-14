@@ -8,4 +8,8 @@ RUN pip install -r requirements.txt --no-cache-dir
 
 COPY . .
 
-CMD ["gunicorn", "--bind", "0.0.0.0:9000", "kittygram_backend.wsgi"]
+RUN chmod 700 command_to_gunicorn.sh
+
+ENTRYPOINT ["./command_to_gunicorn.sh"]
+
+CMD ["fake cmd for pytest"]
