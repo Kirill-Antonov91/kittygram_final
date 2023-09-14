@@ -8,8 +8,6 @@ RUN pip install -r requirements.txt --no-cache-dir
 
 COPY . .
 
-RUN chmod 700 command_to_gunicorn.sh
+ENTRYPOINT [ "sh", "command_to_gunicorn.sh" ]
 
-ENTRYPOINT ["./command_to_gunicorn.sh"]
-
-CMD ["fake cmd for pytest"]
+CMD ["command_to_gunicorn.sh"]
