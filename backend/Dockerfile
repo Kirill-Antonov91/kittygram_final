@@ -8,6 +8,10 @@ RUN pip install -r requirements.txt --no-cache-dir
 
 COPY . .
 
-ENTRYPOINT [ "sh", "command_to_gunicorn.sh" ]
+COPY command_to_gunicorn.sh /usr/bin/command_to_gunicorn.sh
 
-CMD ["command_to_gunicorn.sh"]
+RUN chmod +x ./command_to_gunicorn.sh
+
+ENTRYPOINT ["command_to_gunicorn.sh"]
+
+CMD ["gunicorn", "--bind", "0.0.0.0:9000", "kittygram_backend.wsgi"]
